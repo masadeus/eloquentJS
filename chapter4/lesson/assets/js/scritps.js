@@ -68,5 +68,6 @@ console.log(Math.round(rndm*10));
 
 var zzz = "aaa";
 
+// Dice
+console.log(Math.round(Math.random()*6));
 
-// AND NOW TIME FOR THE EXERCICES
