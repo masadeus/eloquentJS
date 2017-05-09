@@ -48,4 +48,28 @@ function sumRange (arr) {
  return sum
 }
 
+// Reverse array, using JS native methods
+var reverseArray = (arr) => {
+  var i = 0;
+  var arrElts = arr.length;
+  var last;
+  var reversedArr = []
+  while(i < arrElts) {
+    last = arr.pop();
+    reversedArr.push(last);
+    i += 1;
+  }
+  arr = reversedArr
+  return arr;
+}
 
+// Reverse array, without creating another array
+var reverseArrLow = (arr) => {
+  var arrLen = arr.length;
+  var last;
+  for(i = 0; i < arrLen; i++) {
+    last = arr.pop();
+    arr.splice(i, 0, last)
+  }
+  return arr;
+}
