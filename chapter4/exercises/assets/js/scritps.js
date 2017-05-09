@@ -1,4 +1,4 @@
-// EXERCICES CHAPTER 4
+// EXERCISES CHAPTER 4
 
 // Sum of a range
 
@@ -73,3 +73,42 @@ var reverseArrLow = (arr) => {
   }
   return arr;
 }
+
+// Data Structures: Array to list
+
+arr1 = [1, 2, 3];
+
+// we need to transform it into the following object
+
+var list1 = {
+  value: 1,
+  rest: {
+    value: 2,
+    rest: {
+      value: 3,
+      rest: null
+    }
+  }
+};
+
+function arrayToList (arr) {
+  var list = {};
+  var i = arr.length;
+  console.log(i);
+
+  while (i > 0 ) {
+    /*
+    if (i = arr.length)
+      list.rest = null;
+    */
+    list.rest = list;
+    i--;
+    console.log(i);
+    list.value = arr[i];
+  }
+
+  return list;
+}
+
+// helpers
+
