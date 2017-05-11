@@ -86,7 +86,10 @@ var list1 = {
     value: 2,
     rest: {
       value: 3,
-      rest: null
+      rest: {
+        value: 4,
+        rest: null
+      }
     }
   }
 };
@@ -102,6 +105,18 @@ function arrayToList (arr) {
 }
 
 
+function listToArray (list) {
+  var arrFromList = [];
+  for (var node = list; node; node = node.rest) {
+    arrFromList.push(node.value);
+  }
+  /*
+  arrFromList[0] = list.value;
+  arrFromList[1] = list.rest.value;
+  arrFromList[2] = list.rest.rest.value;
+  */
+  return arrFromList;
+}
 
 // helpers for listToArray
 
