@@ -92,23 +92,16 @@ var list1 = {
 };
 
 function arrayToList (arr) {
-  var list = {};
-  var i = arr.length;
-  console.log(i);
-
-  while (i > 0 ) {
-    /*
-    if (i = arr.length)
-      list.rest = null;
-    */
-    list.rest = list;
-    i--;
-    console.log(i);
-    list.value = arr[i];
-  }
-
+  var list = null;
+  for (var i = arr.length - 1; i >= 0; i--)
+    list = {
+      value: i,
+      rest: list
+    };
   return list;
 }
 
-// helpers
+
+
+// helpers for listToArray
 
