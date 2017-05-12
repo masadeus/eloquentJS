@@ -137,3 +137,13 @@ var nth = (list, value) => {
   if (listToArray(list)[value])
     return listToArray(list)[value];
 }
+
+// nth recursive
+var nthR = (list, n) => {
+  if (!list)
+    return undefined;
+  else if (n == 0)
+    return list.value;
+  else
+    return nthR(list.rest, n - 1);
+}
