@@ -147,3 +147,19 @@ var nthR = (list, n) => {
   else
     return nthR(list.rest, n - 1);
 }
+
+// Deep object comparison
+
+var obj = {here: {is: "an"}, object: 2};
+
+var objNull =  null;
+
+var objecte =  {mordecay: {is: "an"}, object: 2};
+
+if(objecte == null)
+    console.log("Es null")
+
+var deepEqual = (obj1, obj2) => {
+  if((typeof(obj1) == "object" && obj1) && (typeof(obj2) == "object" && obj2))
+
+}
