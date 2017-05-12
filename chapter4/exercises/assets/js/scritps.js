@@ -85,10 +85,13 @@ var list1 = {
   rest: {
     value: 2,
     rest: {
-      value: 3,
+      value: 'a',
       rest: {
-        value: 4,
-        rest: null
+        value: 4.23,
+        rest: {
+          value: 4,
+          rest: null
+        }
       }
     }
   }
