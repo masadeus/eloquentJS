@@ -121,7 +121,7 @@ function listToArray (list) {
   return arrFromList;
 }
 
-// helpers for listToArray
+// HELPERS FOR listToArray
 
 // Prepend. Creates a new list given a value and a list.
 var prepend = (oldValue, oldList) => {
@@ -132,3 +132,8 @@ var prepend = (oldValue, oldList) => {
   return newList;
 }
 
+// nth return the nth element of a list
+var nth = (list, value) => {
+  if (listToArray(list)[value])
+    return listToArray(list)[value];
+}
