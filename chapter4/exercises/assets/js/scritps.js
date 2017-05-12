@@ -113,11 +113,6 @@ function listToArray (list) {
   for (var node = list; node; node = node.rest) {
     arrFromList.push(node.value);
   }
-  /*
-  arrFromList[0] = list.value;
-  arrFromList[1] = list.rest.value;
-  arrFromList[2] = list.rest.rest.value;
-  */
   return arrFromList;
 }
 
@@ -154,12 +149,41 @@ var obj = {here: {is: "an"}, object: 2};
 
 var objNull =  null;
 
-var objecte =  {mordecay: {is: "an"}, object: 2};
-
-if(objecte == null)
-    console.log("Es null")
+var objecte =  {here: {is: "another kind of"}, object: 2};
 
 var deepEqual = (obj1, obj2) => {
-  if((typeof(obj1) == "object" && obj1) && (typeof(obj2) == "object" && obj2))
+  if((typeof(obj1) == "object" && obj1) && (typeof(obj2) == "object" && obj2)){
 
+    var objKeys1 = Object.keys(obj1);
+    var objKeys2 = Object.keys(obj2);
+
+    // control
+    console.info(objKeys1.length);
+    console.info(objKeys2.length);
+
+    if (objKeys1.length !== objKeys2.length){
+      console.info("Not the same amount of properties");
+      return false
+    }
+
+    for(var i = 0; i < objKeys1.length; i++) {
+      console.info("in the loop");
+      if(objKeys1[i] === objKeys2[i]){
+
+        console.log(objKeys1[i]);
+        console.warn(typeof(objKeys1[i]));
+        console.log(obj1[objKeys1[i]]);
+        console.warn(typeof(obj1[objKeys1[i]]));
+
+        if(typeof(obj1[objKeys1[i]]) == "object"){
+           deepEqual(obj1[objKeys1[i]], obj2[objKeys2[i]]);
+        }
+        else if ((obj1[objKeys1[i]] !== obj2[objKeys2[i]]))
+          return false;
+        else  {
+        return true;
+        }
+      }
+    }
+  }
 }
