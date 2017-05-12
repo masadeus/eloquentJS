@@ -123,3 +123,12 @@ function listToArray (list) {
 
 // helpers for listToArray
 
+// Prepend. Creates a new list given a value and a list.
+var prepend = (oldValue, oldList) => {
+  var newList = {
+    value: oldValue,
+    list: oldList
+  }
+  return newList;
+}
+
