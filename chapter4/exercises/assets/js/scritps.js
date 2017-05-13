@@ -151,7 +151,7 @@ var objNull =  null;
 
 var objecte =  {here: {is: "another kind of"}, object: 2};
 
-var deepEqual = (a, b) => {
+var deepEqualA = (a, b) => {
   if((typeof(a) == "object" && a) && (typeof(b) == "object" && b)){
 
     var keysA = Object.keys(a);
@@ -163,10 +163,9 @@ var deepEqual = (a, b) => {
     }
 
     for(var i = 0; i < keysA.length; i++) {
-      console.info("in the loop");
       if(keysA[i] === keysB[i]){
         if(typeof(a[keysA[i]]) == "object"){
-           deepEqual(a[keysA[i]], b[keysB[i]]);
+           deepEqualA(a[keysA[i]], b[keysB[i]]);
         }
         else if ((a[keysA[i]] !== b[keysB[i]]))
           return false;
@@ -180,35 +179,36 @@ var deepEqual = (a, b) => {
     return false
 }
 
-// Deep object comparison using for/in loop
+// Deep object comparison using for/in loop, the better way.
+// I recommend to check Marijn Haverbeke's solution, it is much more elegant.
 
-var deepEqual_ = (a, b) => {
+var deepEqualB = (a, b) => {
+  // remember that in JS objects are compared by reference, not by value
   if((typeof(a) == "object" && a) && (typeof(b) == "object" && b)){
 
     var keysA = Object.keys(a);
     var KeysB = Object.keys(b);
 
     if (keysA.length !== KeysB.length){
-      console.info("Not the same amount of properties");
-      return false
+      return false;
     }
+
     for (let prop in a) {
-      // check if they are the same
-      console.log(prop);
       // check if prop exists in b
       if (b.hasOwnProperty(prop)) {
 
-        console.info(a[prop]);
-        console.info(b[prop]);
+        if(a[prop] === b[prop])
+          return true;
 
-        if(a[prop] !== b[prop]){
+        // if is obj apply deep comparison again
+        // if it were an object === will not work to compare the value
+        if(typeof(a[prop] == 'object')){
+          deepEqualB(a[prop], b[prop]);
+        }
+
+        else if(a[prop] !== b[prop]){
           return false;
         }
-        // if obj apply deep comparison again
-        if(typeof(a[prop] == 'object'))
-          deepEqual_(a[prop], b[prop]);
-        else
-          return true;
       }
     }
   }
