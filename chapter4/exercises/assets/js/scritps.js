@@ -157,10 +157,6 @@ var deepEqual = (obj1, obj2) => {
     var objKeys1 = Object.keys(obj1);
     var objKeys2 = Object.keys(obj2);
 
-    // control
-    console.info(objKeys1.length);
-    console.info(objKeys2.length);
-
     if (objKeys1.length !== objKeys2.length){
       console.info("Not the same amount of properties");
       return false
@@ -183,6 +179,35 @@ var deepEqual = (obj1, obj2) => {
         else  {
         return true;
         }
+      }
+    }
+  }
+}
+
+// Deep object compaarison using for/in loop
+
+var deepEqual_ = (obj1, obj2) => {
+  if((typeof(obj1) == "object" && obj1) && (typeof(obj2) == "object" && obj2)){
+
+    var objKeys1 = Object.keys(obj1);
+    var objKeys2 = Object.keys(obj2);
+
+    if (objKeys1.length !== objKeys2.length){
+      console.info("Not the same amount of properties");
+      return false
+    }
+    for (prop in obj1) {
+      // check if they are the same
+      console.log(prop);
+      // check if prop exists in obj2
+      if (obj2.hasOwnProperty(prop)) {
+        if(obj1[prop] !== obj2[prop])
+          return false;
+        // if obj apply deep comparison again
+        if(typeof(obj1[prop] == 'object'))
+          deepEqual_(obj1[prop], obj2[prop]);
+        else
+          return true;
       }
     }
   }
