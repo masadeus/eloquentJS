@@ -185,10 +185,10 @@ var deepEqual = (a, b) => {
 var deepEqual_ = (a, b) => {
   if((typeof(a) == "object" && a) && (typeof(b) == "object" && b)){
 
-    var keysB = Object.keys(a);
+    var keysA = Object.keys(a);
     var KeysB = Object.keys(b);
 
-    if (keysB.length !== KeysB.length){
+    if (keysA.length !== KeysB.length){
       console.info("Not the same amount of properties");
       return false
     }
