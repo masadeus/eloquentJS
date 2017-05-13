@@ -151,30 +151,24 @@ var objNull =  null;
 
 var objecte =  {here: {is: "another kind of"}, object: 2};
 
-var deepEqual = (obj1, obj2) => {
-  if((typeof(obj1) == "object" && obj1) && (typeof(obj2) == "object" && obj2)){
+var deepEqual = (a, b) => {
+  if((typeof(a) == "object" && a) && (typeof(b) == "object" && b)){
 
-    var objKeys1 = Object.keys(obj1);
-    var objKeys2 = Object.keys(obj2);
+    var keysA = Object.keys(a);
+    var keysB = Object.keys(b);
 
-    if (objKeys1.length !== objKeys2.length){
+    if (keysA.length !== keysB.length){
       console.info("Not the same amount of properties");
       return false
     }
 
-    for(var i = 0; i < objKeys1.length; i++) {
+    for(var i = 0; i < keysA.length; i++) {
       console.info("in the loop");
-      if(objKeys1[i] === objKeys2[i]){
-
-        console.log(objKeys1[i]);
-        console.warn(typeof(objKeys1[i]));
-        console.log(obj1[objKeys1[i]]);
-        console.warn(typeof(obj1[objKeys1[i]]));
-
-        if(typeof(obj1[objKeys1[i]]) == "object"){
-           deepEqual(obj1[objKeys1[i]], obj2[objKeys2[i]]);
+      if(keysA[i] === keysB[i]){
+        if(typeof(a[keysA[i]]) == "object"){
+           deepEqual(a[keysA[i]], b[keysB[i]]);
         }
-        else if ((obj1[objKeys1[i]] !== obj2[objKeys2[i]]))
+        else if ((a[keysA[i]] !== b[keysB[i]]))
           return false;
         else  {
         return true;
@@ -182,30 +176,37 @@ var deepEqual = (obj1, obj2) => {
       }
     }
   }
+  else
+    return false
 }
 
-// Deep object compaarison using for/in loop
+// Deep object comparison using for/in loop
 
-var deepEqual_ = (obj1, obj2) => {
-  if((typeof(obj1) == "object" && obj1) && (typeof(obj2) == "object" && obj2)){
+var deepEqual_ = (a, b) => {
+  if((typeof(a) == "object" && a) && (typeof(b) == "object" && b)){
 
-    var objKeys1 = Object.keys(obj1);
-    var objKeys2 = Object.keys(obj2);
+    var keysB = Object.keys(a);
+    var KeysB = Object.keys(b);
 
-    if (objKeys1.length !== objKeys2.length){
+    if (keysB.length !== KeysB.length){
       console.info("Not the same amount of properties");
       return false
     }
-    for (prop in obj1) {
+    for (let prop in a) {
       // check if they are the same
       console.log(prop);
-      // check if prop exists in obj2
-      if (obj2.hasOwnProperty(prop)) {
-        if(obj1[prop] !== obj2[prop])
+      // check if prop exists in b
+      if (b.hasOwnProperty(prop)) {
+
+        console.info(a[prop]);
+        console.info(b[prop]);
+
+        if(a[prop] !== b[prop]){
           return false;
+        }
         // if obj apply deep comparison again
-        if(typeof(obj1[prop] == 'object'))
-          deepEqual_(obj1[prop], obj2[prop]);
+        if(typeof(a[prop] == 'object'))
+          deepEqual_(a[prop], b[prop]);
         else
           return true;
       }
