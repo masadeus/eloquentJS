@@ -99,5 +99,26 @@ repeat(3, function(n) {
 
 // from JSON to js
 var ancestry = JSON.parse(ANCESTRY_FILE);
+//console.log(ancestry);
 
-console.log(ancestry.length);
+// filter array, find people in ancestry born in 1924
+function filter_(array, test) {
+  var passed = [];
+  for (var i = 0; i < array.length; i++) {
+    if (test(array[i]))
+      passed.push(array[i]);
+  }
+  return passed;
+}
+
+console.log(filter_(ancestry, function(person) {
+  return person.born > 1900 && person.born < 1925;
+}));
+
+// The above is a pure function, doesn't delete the elements of the original array
+
+// And we can also use the native method
+
+console.log(ancestry.filter(function(person) {
+  return person.father == "Carel Haverbeke";
+}));
