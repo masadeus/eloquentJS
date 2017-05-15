@@ -94,3 +94,10 @@ repeat(3, function(n) {
     console.log(n, "is even");
   });
 });
+
+// Ancestry file
+
+// from JSON to js
+var ancestry = JSON.parse(ANCESTRY_FILE);
+
+console.log(ancestry.length);
