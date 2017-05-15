@@ -94,5 +94,3 @@ repeat(3, function(n) {
     console.log(n, "is even");
   });
 });
-
-console.log(ANCESTRY_FILE);
