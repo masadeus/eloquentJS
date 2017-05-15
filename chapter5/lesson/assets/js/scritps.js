@@ -33,6 +33,7 @@ const addString = (string) => {
 }
 
 // We can also directly pass the function directy as a parameter without storing it in a variable, because JS is awesome
+// This is actually one of the features of 'First Class Functions' in 'Functional Programming'
 
 var numbers = [1, 2, 3, 4, 5], sum = 0;
 forEach_(numbers, function(number) {
@@ -69,3 +70,29 @@ function gatherCorrelations(journal) {
   });
   return phis;
 }
+
+// Higher-order functions
+// Functions that operate on other functions, either by taking them as arguments or by returning them
+
+function greaterThan(n) {
+  return function(m) { return m > n; };
+}
+var greaterThan10 = greaterThan(10);
+console.log(greaterThan10(11));
+// → true
+
+// Getting better at it
+function unless(test, then) {
+  if (!test) then();
+}
+function repeat(times, body) {
+  for (var i = 0; i < times; i++) body(i);
+}
+
+repeat(3, function(n) {
+  unless(n % 2, function() {
+    console.log(n, "is even");
+  });
+});
+
+console.log(ANCESTRY_FILE);
