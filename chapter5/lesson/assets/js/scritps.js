@@ -151,4 +151,23 @@ var personName = (person) => {
 // Now when doing map(overNinety, personName)
 // → ["Clara Aernoudts", "Emile Haverbeke", "Maria Haverbeke"]
 
+// Summarizing with reduce
 
+// Reduce allows us to enter an extra parameter
+function reduce(array, combine, start) {
+  var current = start;
+  for (var i = 0; i < array.length; i++)
+    current = combine(current, array[i]);
+  return current;
+}
+
+console.log(reduce([1, 2, 3, 4], function(a, b) {
+  return a + b;
+}, 4));
+
+// used to check for the oldes ancester in ancestry
+console.log(ancestry.reduce(function(min, cur) {
+  if (cur.born < min.born) return cur;
+  else return min;
+}));
+// → {name: "Pauwels van Haverbeke", born: 1535, …}
