@@ -122,3 +122,33 @@ console.log(filter_(ancestry, function(person) {
 console.log(ancestry.filter(function(person) {
   return person.father == "Carel Haverbeke";
 }));
+
+// Transforming with Map
+
+// Here is how map works
+
+function map(array, transform) {
+  var mapped = [];
+  for (var i = 0; i < array.length; i++)
+    mapped.push(transform(array[i]));
+  return mapped;
+}
+
+// first we create a new array of people over ninety in the array
+
+var overNinety = ancestry.filter(function(person) {
+  return person.died - person.born > 90;
+});
+
+// What I find really cool is in 'overNinety' only returns values when the condition is met. Without using if conditions
+
+// this is an array of 3 objects from ancestry
+
+var personName = (person) => {
+  return person.name;
+}
+
+// Now when doing map(overNinety, personName)
+// → ["Clara Aernoudts", "Emile Haverbeke", "Maria Haverbeke"]
+
+
