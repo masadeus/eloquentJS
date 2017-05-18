@@ -153,6 +153,12 @@ var personName = (person) => {
 
 // Summarizing with reduce
 
+// The reduce() method reduces the array to a single value.
+
+// The reduce() method executes a provided function for each value of the array (from left-to-right).
+
+// The return value of the function is stored in an accumulator (result/total).
+
 // Reduce allows us to enter an extra parameter
 function reduce(array, combine, start) {
   var current = start;
@@ -165,12 +171,15 @@ console.log(reduce([1, 2, 3, 4], function(a, b) {
   return a + b;
 }, 4));
 
-// used to check for the oldes ancester in ancestry
+// used to check for the older ancester in ancestry
 console.log(ancestry.reduce(function(min, cur) {
   if (cur.born < min.born) return cur;
   else return min;
 }));
 // → {name: "Pauwels van Haverbeke", born: 1535, …}
+
+// Jsut to make it clear: the value  ancestry.reduce returns it is applied to the next element of the array.
+// In the end the final value will be returned.
 
 // and this is how it would look if we had not used Higher order functions
 var min = ancestry[0];
@@ -183,3 +192,16 @@ for (var i = 1; i < ancestry.length; i++) {
 // → {name: "Pauwels van Haverbeke", born: 1535, …}
 
 // Composability
+// When we compose functions is when higher-order functions start to shine
+function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+function age(p) { return p.died - p.born; }
+function male(p) { return p.sex == "m"; }
+function female(p) { return p.sex == "f"; }
+
+console.log(average(ancestry.filter(male).map(age)));
+// → 61.67
+console.log(average(ancestry.filter(female).map(age)));
+// → 54.56
