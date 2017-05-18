@@ -7,12 +7,12 @@
 var array = [1, 2, 3];
 for (var i = 0; i < array.length; i++) {
   var current = array[i];
-  console.log(current);
+  // // console.log(current);
 }
 
 var logEach = (arr) => {
   for (var i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
+    // // console.log(arr[i]);
   }
 }
 
@@ -23,13 +23,13 @@ function forEach_(array, action) {
     action(array[i]);
 }
 
-forEach_(["Wampeter", "Foma", "Granfalloon"], console.log);
+// forEach_(["Wampeter", "Foma", "Granfalloon"], console.log);
 
 var stringsArr = ["Wampeter", "Foma", "Granfalloon"];
 
 // introducing 'const' => so that the value can't be reassigned
 const addString = (string) => {
-  console.log(`${string} ist lecker`);
+  (`${string} ist lecker`);
 }
 
 // We can also directly pass the function directy as a parameter without storing it in a variable, because JS is awesome
@@ -39,7 +39,7 @@ var numbers = [1, 2, 3, 4, 5], sum = 0;
 forEach_(numbers, function(number) {
   sum += number;
 });
-console.log(sum);
+// // console.log(sum);
 
 // JS has it's own forEach native function, so we don't need to rewrite it
 
@@ -78,7 +78,7 @@ function greaterThan(n) {
   return function(m) { return m > n; };
 }
 var greaterThan10 = greaterThan(10);
-console.log(greaterThan10(11));
+// // console.log(greaterThan10(11));
 // → true
 
 // Getting better at it
@@ -91,7 +91,7 @@ function repeat(times, body) {
 
 repeat(3, function(n) {
   unless(n % 2, function() {
-    console.log(n, "is even");
+    // // console.log(n, "is even");
   });
 });
 
@@ -99,7 +99,7 @@ repeat(3, function(n) {
 
 // from JSON to js
 var ancestry = JSON.parse(ANCESTRY_FILE);
-//console.log(ancestry);
+// // console.log(ancestry);
 
 // filter array, find people in ancestry born in 1924
 function filter_(array, test) {
@@ -111,17 +111,21 @@ function filter_(array, test) {
   return passed;
 }
 
+/*
 console.log(filter_(ancestry, function(person) {
   return person.born > 1900 && person.born < 1925;
 }));
+*/
 
 // The above is a pure function, doesn't delete the elements of the original array
 
 // And we can also use the native method
 
+/*
 console.log(ancestry.filter(function(person) {
   return person.father == "Carel Haverbeke";
 }));
+*/
 
 // Transforming with Map
 
@@ -167,16 +171,20 @@ function reduce(array, combine, start) {
   return current;
 }
 
+/*
 console.log(reduce([1, 2, 3, 4], function(a, b) {
   return a + b;
 }, 4));
+*/
 
 // used to check for the older ancester in ancestry
+/*
 console.log(ancestry.reduce(function(min, cur) {
   if (cur.born < min.born) return cur;
   else return min;
 }));
 // → {name: "Pauwels van Haverbeke", born: 1535, …}
+*/
 
 // Jsut to make it clear: the value  ancestry.reduce returns it is applied to the next element of the array.
 // In the end the final value will be returned.
@@ -188,7 +196,7 @@ for (var i = 1; i < ancestry.length; i++) {
   if (cur.born < min.born)
     min = cur;
 }
-// console.log(min);
+// // console.log(min);
 // → {name: "Pauwels van Haverbeke", born: 1535, …}
 
 // Composability
@@ -201,9 +209,9 @@ function age(p) { return p.died - p.born; }
 function male(p) { return p.sex == "m"; }
 function female(p) { return p.sex == "f"; }
 
-console.log(average(ancestry.filter(male).map(age)));
+// console.log(average(ancestry.filter(male).map(age)));
 // → 61.67
-console.log(average(ancestry.filter(female).map(age)));
+// console.log(average(ancestry.filter(female).map(age)));
 // → 54.56
 
 // The Cost
@@ -214,3 +222,15 @@ console.log(average(ancestry.filter(female).map(age)));
 // with superfast computers of nowadays this may not be a problem most of times...
 // Careful with complex functions in nested loops
 // the function will run NxM times being N the outer loop and M the inner.
+
+// Great-great-great-great-...
+
+// Build up an object that associates names with people.
+
+var byName = {};
+ancestry.forEach(function(person) {
+  byName[person.name] = person;
+});
+
+console.log(byName["Philibert Haverbeke"]);
+
