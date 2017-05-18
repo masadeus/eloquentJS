@@ -205,3 +205,12 @@ console.log(average(ancestry.filter(male).map(age)));
 // → 61.67
 console.log(average(ancestry.filter(female).map(age)));
 // → 54.56
+
+// The Cost
+// Take into consideration that
+// using forEach instead of a for loop
+// or making steps that produce new arrays
+// looks elegant, but it is ineficient
+// with superfast computers of nowadays this may not be a problem most of times...
+// Careful with complex functions in nested loops
+// the function will run NxM times being N the outer loop and M the inner.
