@@ -171,3 +171,15 @@ console.log(ancestry.reduce(function(min, cur) {
   else return min;
 }));
 // → {name: "Pauwels van Haverbeke", born: 1535, …}
+
+// and this is how it would look if we had not used Higher order functions
+var min = ancestry[0];
+for (var i = 1; i < ancestry.length; i++) {
+  var cur = ancestry[i];
+  if (cur.born < min.born)
+    min = cur;
+}
+// console.log(min);
+// → {name: "Pauwels van Haverbeke", born: 1535, …}
+
+// Composability
