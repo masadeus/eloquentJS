@@ -7,12 +7,12 @@
 var array = [1, 2, 3];
 for (var i = 0; i < array.length; i++) {
   var current = array[i];
-  // // console.log(current);
+  // console.log(current);
 }
 
 var logEach = (arr) => {
   for (var i = 0; i < arr.length; i++) {
-    // // console.log(arr[i]);
+    // console.log(arr[i]);
   }
 }
 
@@ -234,3 +234,25 @@ ancestry.forEach(function(person) {
 
 console.log(byName["Philibert Haverbeke"]);
 
+// Note that the following function only deals with one person
+// if person not in array, returns dafaultValue, which equals 0
+// else returns the f function with the specified 3 paramenter
+
+function reduceAncestors(person, f, defaultValue) {
+  function valueFor(person) {
+    if (person == null)
+      return defaultValue;
+    else
+      return f(person, valueFor(byName[person.mother]), valueFor(byName[person.father]));
+  }
+  return valueFor(person);
+}
+
+// Now we write the f we are interested in,, sharedDNA
+
+function sharedDNA(person, fromMother, fromFather) {
+  if (person.name == "Pauwels van Haverbeke")
+    return 1;
+  else
+    return (fromMother + fromFather) / 2;
+}
