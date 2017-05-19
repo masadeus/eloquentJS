@@ -164,6 +164,7 @@ var personName = (person) => {
 // The return value of the function is stored in an accumulator (result/total).
 
 // Reduce allows us to enter an extra parameter
+
 function reduce(array, combine, start) {
   var current = start;
   for (var i = 0; i < array.length; i++)
@@ -268,4 +269,30 @@ console.log(reduceAncestors(ph, sharedDNA, 0) / 4);
 // Since when it hits Pauwels van Haverbeke it will return 1 and this will get divided over an over
 
 // If the byName person object doesn't exist it will return undefined (but according to line 243 should be null?)
-// Assuming that it worksthen it would just return the default value 0
+// Assuming that it works then it would just return the default value 0
+
+// Find the percentage of a person’s known ancestors who lived past 70
+
+function countAncestors(person, test) {
+  function combine(current, fromMother, fromFather) {
+    var thisOneCounts = current != person && test(current);
+    return fromMother + fromFather + (thisOneCounts ? 1 : 0);
+  }
+  return reduceAncestors(person, combine, 0);
+}
+
+//Note that trough the use of operators(l 278), conditions are not needed
+
+function longLivingPercentage(person) {
+  var all = countAncestors(person, function(person) {
+    return true;
+  });
+  var longLiving = countAncestors(person, function(person) {
+    return (person.died - person.born) >= 70;
+  });
+  return longLiving / all;
+}
+// console.log(longLivingPercentage(byName["Emile Haverbeke"]));
+// → 0.129
+
+// Needs further analisys
