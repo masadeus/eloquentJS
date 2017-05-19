@@ -248,7 +248,7 @@ function reduceAncestors(person, f, defaultValue) {
   return valueFor(person);
 }
 
-// Now we write the f we are interested in,, sharedDNA
+// Now we write our f → sharedDNA
 
 function sharedDNA(person, fromMother, fromFather) {
   if (person.name == "Pauwels van Haverbeke")
@@ -256,3 +256,16 @@ function sharedDNA(person, fromMother, fromFather) {
   else
     return (fromMother + fromFather) / 2;
 }
+
+// And finally we can use everything
+
+var ph = byName["Philibert Haverbeke"];
+console.log(reduceAncestors(ph, sharedDNA, 0) / 4);
+
+// We divide by 4 because with the function we get the share the autor's gradfather from Pawels van Haverbeke has
+// The author has a 4th of his grandfather's DNA (divided 2 a la 2 → half of his dad and who has half of his own dad)
+
+// Since when it hits Pauwels van Haverbeke it will return 1 and this will get divided over an over
+
+// If the byName person object doesn't exist it will return undefined (but according to line 243 should be null?)
+// Assuming that it worksthen it would just return the default value 0
