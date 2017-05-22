@@ -93,7 +93,23 @@ blackRabbit.speak("Doom...");
 // → The black rabbit says 'Doom...'
 
 // Its prototype property will be the prototype of instances created through it but is not its own prototype.
-// So blackRabbit.prototype will be Rabbit.
-// The actual prototype of a constructor is Function.prototype since constructors are functions
-// We can retireve it by using Object.getPrototypeOf
+// So blackRabbit.prototype will be the object Rabbit.
+// The prototype of a constructor is Function.prototype since constructors are functions,
+// we can retireve it by using Object.getPrototypeOf
 
+// Overriding derived properties
+// Can be useful to express exceptional properties in instances of a more generic class of objects
+// while letting the nonexceptional objects simply take a standard value from their prototype
+
+Rabbit.prototype.teeth = "small";
+// console.log(killerRabbit.teeth);
+// → small
+killerRabbit.teeth = "long, sharp, and bloody";
+// console.log(killerRabbit.teeth);
+// → long, sharp, and bloody
+// console.log(blackRabbit.teeth);
+// → small
+// console.log(Rabbit.prototype.teeth);
+// → small
+
+// Prototype interference
