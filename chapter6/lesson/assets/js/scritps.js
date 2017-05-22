@@ -113,3 +113,44 @@ killerRabbit.teeth = "long, sharp, and bloody";
 // → small
 
 // Prototype interference
+
+Object.prototype.nonsense = "hi";
+for (var name in map)
+  console.log(name);
+// → pizza
+// → touched tree
+// → nonsense
+console.log("nonsense" in map);
+// → true
+console.log("toString" in map);
+// → true
+
+// Delete the problematic property again
+delete Object.prototype.nonsense;
+
+// It is showing the nonsense value bacause it is what is called an ennumerable propperty.
+// The prototype properties are usually nonenumerable, and this can also be than like this
+
+Object.defineProperty(Object.prototype, "hiddenNonsense",
+                      {enumerable: false, value: "hi"});
+for (var name in map)
+  console.log(name);
+// → pizza
+// → touched tree
+console.log(map.hiddenNonsense);
+// → hi
+
+// It doesn't show inthe loop, but we can still access it.
+
+// To ba on the save side it is better to use the hasOwnProperty method
+// which will then only check the instance properties
+
+console.log(map.hasOwnProperty("toString"));
+// → false
+
+ for (var name in map) {
+  if (map.hasOwnProperty(name)) {
+    // ... this is an own property
+  }
+}
+
