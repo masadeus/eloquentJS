@@ -148,9 +148,32 @@ console.log(map.hiddenNonsense);
 console.log(map.hasOwnProperty("toString"));
 // → false
 
- for (var name in map) {
+for (var name in map) {
   if (map.hasOwnProperty(name)) {
     // ... this is an own property
   }
 }
 
+// Prototype-less objects
+
+// it can also be done passing the paramenter null the the method Object.create
+
+var map = Object.create(null);
+map["pizza"] = 0.069;
+// console.log("toString" in map);
+// → false
+// console.log("pizza" in map);
+// → true
+
+// Polymorphism
+// When the author defines interface it referes to the naming of the functions, since it is how we will interact with the program
+// So polyphormism is about making code being able to work with values of different shapes as long as it suports the instance (a specific method)
+// So if you  spply toString to an array it will return string of the elements separated by comma (like join)
+// but if you apply it to an abject it is gonna return [object Object].
+// If you the to String method to an array it will return then
+
+// console.log(Object.prototype.toString.call([1, 2]));
+// → [object Array]
+
+// But all those objects support toString, and will return something meaningfull.
+// this is Polyphormism
