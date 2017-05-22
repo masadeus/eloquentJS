@@ -66,3 +66,34 @@ killerRabbit.speak("SKREEEE!");
 // and derives shared properties from its prototype.
 
 // CONSTRUCTORS
+
+// A constructor is a more convenient way to create an objects that derive from some shared prototype
+// it uses the work "new" in front
+// The constructor, when called, will return a fresh object  with the this variable bound to it.
+// There is the convention to capitalize constructors
+
+function Rabbit(type) {
+  this.type = type;
+}
+
+var killerRabbit = new Rabbit("killer");
+var blackRabbit = new Rabbit("black");
+console.log(blackRabbit.type);
+// → black
+
+// Constructors (in fact, all functions) automatically get a property named.
+// Every instance created with this constructor will have this object as its prototype.
+// So to add a speak method to rabbits created with the Rabbit constructor, we can simply do this:
+
+Rabbit.prototype.speak = function(line) {
+  console.log("The " + this.type + " rabbit says '" +
+              line + "'");
+};
+blackRabbit.speak("Doom...");
+// → The black rabbit says 'Doom...'
+
+// Its prototype property will be the prototype of instances created through it but is not its own prototype.
+// So blackRabbit.prototype will be Rabbit.
+// The actual prototype of a constructor is Function.prototype since constructors are functions
+// We can retireve it by using Object.getPrototypeOf
+

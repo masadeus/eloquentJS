@@ -165,7 +165,7 @@ var personName = (person) => {
 
 // Reduce allows us to enter an extra parameter
 
-function reduce(array, combine, start) {
+function reduce_(array, combine, start) {
   var current = start;
   for (var i = 0; i < array.length; i++)
     current = combine(current, array[i]);
@@ -173,21 +173,21 @@ function reduce(array, combine, start) {
 }
 
 /*
-console.log(reduce([1, 2, 3, 4], function(a, b) {
+console.log(reduce_([1, 2, 3, 4], function(a, b) {
   return a + b;
 }, 4));
 */
 
 // used to check for the older ancester in ancestry
 /*
-console.log(ancestry.reduce(function(min, cur) {
+console.log(ancestry.reduce_(function(min, cur) {
   if (cur.born < min.born) return cur;
   else return min;
 }));
 // → {name: "Pauwels van Haverbeke", born: 1535, …}
 */
 
-// Jsut to make it clear: the value  ancestry.reduce returns it is applied to the next element of the array.
+// Just to make it clear: the value  ancestry.reduce_ returns it is applied to the next element of the array.
 // In the end the final value will be returned.
 
 // and this is how it would look if we had not used Higher order functions
@@ -210,9 +210,9 @@ function age(p) { return p.died - p.born; }
 function male(p) { return p.sex == "m"; }
 function female(p) { return p.sex == "f"; }
 
-// console.log(average(ancestry.filter(male).map(age)));
+console.log(average(ancestry.filter(male).map(age)));
 // → 61.67
-// console.log(average(ancestry.filter(female).map(age)));
+console.log(average(ancestry.filter(female).map(age)));
 // → 54.56
 
 // The Cost
@@ -296,3 +296,22 @@ function longLivingPercentage(person) {
 // → 0.129
 
 // Needs further analisys
+
+// Binding
+
+var theSet = ["Carel Haverbeke", "Maria van Brussel",
+              "Donald Duck"];
+function isInSet(set, person) {
+  return set.indexOf(person.name) > -1;
+}
+
+/*
+console.log(ancestry.filter(function(person) {
+  return isInSet(theSet, person);
+}));
+*/
+
+// The same using bind
+
+// console.log(ancestry.filter(isInSet.bind(null, theSet)));
+
