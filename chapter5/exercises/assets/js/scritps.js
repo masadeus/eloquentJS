@@ -30,15 +30,32 @@ function ageDifference (birthYearChild, birthYearMother) {
   return birthYearChild - birthYearMother;
 }
 
-// console.log(ancestry[0].born);
-// console.log(ancestry[0].mother);
-// console.log(ancestry[0].name);
 // console.log(byName[ancestry[0].mother].born);
 
 // Filter individuals with a mother with data
-var withMother = ancestry.filter(function(person) {
-  console.log(byName[person.mother]);
+const withMother = ancestry.filter(function(person) {
   return byName[person.mother];
 });
 
-// return person.died - person.born > 90;
+// Calculate age difference
+function difference(a, b) {
+ return a - b;
+}
+
+// Calculate age differences with fixed propperty parameters
+function diffObj(obj){
+  return difference(obj.born, byName[obj.mother].born)
+}
+// Age differences array
+const ageDiffArr = withMother.map(diffObj);
+
+console.log(average(ageDiffArr).toFixed(1));
+
+// The compact solution
+var differences = ancestry.filter(function(person) {
+  return byName[person.mother];
+  }).map(function(person) {
+    return person.born - byName[person.mother].born;
+  });
+
+console.log(average(differences).toFixed(1));
