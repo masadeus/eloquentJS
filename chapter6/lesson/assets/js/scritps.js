@@ -166,7 +166,7 @@ map["pizza"] = 0.069;
 // → true
 
 // Polymorphism
-// When the author defines interface it referes to the naming of the functions, since it is how we will interact with the program
+// When the author defines interface it referes to the functions themselves and its naming, since it is how we will interact with the program
 // So polyphormism is about making code being able to work with values of different shapes as long as it suports the instance (a specific method)
 // So if you  spply toString to an array it will return string of the elements separated by comma (like join)
 // but if you apply it to an abject it is gonna return [object Object].
