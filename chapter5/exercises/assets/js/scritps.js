@@ -59,3 +59,34 @@ var differences = ancestry.filter(function(person) {
   });
 
 console.log(average(differences).toFixed(1));
+
+
+// HISTORICAL LIFE EXPENTANCY
+
+function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+// create an array with centuries as keys and arrays of people that deceased in that century as value
+
+// !!! map only applies to arrays!!!
+// but ancestry is an array of objects
+function ages (arr) {
+  arr.entries(function(person) {
+    return person.died - person.born;
+  })
+}
+var agesAncesters = ages(ancestry);
+
+// Organize people by century of death
+
+var byCentury = {};
+function byCentury (array) {
+  var peopleByCentury;
+}
+
+var byName = {};
+ancestry.forEach(function(person) {
+  byName[person.name] = person;
+});
