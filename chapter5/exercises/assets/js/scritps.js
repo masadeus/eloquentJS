@@ -81,19 +81,10 @@ var agesAncesters = ages(ancestry);
 
 // Organize people by century of death
 
-var byCentury = {};
-function byCentury (array) {
-  var peopleByCentury;
-}
-
 var byName = {};
 ancestry.forEach(function(person) {
   byName[person.name] = person;
 });
-
-console.log(ancestry[1]);
-
-console.log(typeof(ancestry));
 
 // build array with ages
 const prova = function (arr){
@@ -107,3 +98,20 @@ const prova = function (arr){
   return byCenturies;
 }
 console.log(prova(ancestry));
+
+// do we need this variable in the global space?
+var centuries = [];
+
+// populate centuries
+
+const createCenturies = function (arr){
+  arr.map(function (person) {
+  var century = Math.ceil(person.died / 100);
+  if(!centuries.includes(century)){
+      centuries.push(century);
+    }
+  })
+  return centuries.sort();
+}
+
+// now the byCenturies needs to be an array of object, not of integers, that groups the persons
