@@ -73,7 +73,7 @@ function average(array) {
 // !!! map only applies to arrays!!!
 // but ancestry is an array of objects
 function ages (arr) {
-  arr.entries(function(person) {
+  arr.map(function(person) {
     return person.died - person.born;
   })
 }
@@ -90,3 +90,20 @@ var byName = {};
 ancestry.forEach(function(person) {
   byName[person.name] = person;
 });
+
+console.log(ancestry[1]);
+
+console.log(typeof(ancestry));
+
+// build array with ages
+const prova = function (arr){
+  var byCenturies = []
+  for(let i = 0; i < arr.length; i++) {
+    var century = Math.ceil(arr[i].died / 100);
+    if(!byCenturies.includes(century)){
+      byCenturies.push(century);
+    }
+  }
+  return byCenturies;
+}
+console.log(prova(ancestry));
